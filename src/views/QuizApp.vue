@@ -1,7 +1,7 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>Q. {{ "クイズタイトル" }}</h2>
+    <h2>Q. {{ quiz }}</h2>
     <img
       class="quiz-image"
       src="https://via.placeholder.com/300x300"
@@ -23,7 +23,33 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      quiz: {
+        text:
+        image:
+        choices: [
+          {
+            text:
+            isCorrect:
+            feedback:
+          },
+          {
+            text:
+            isCorrect:
+            feedback:
+          },
+          {
+            text:
+            isCorrect:
+            feedback:
+          },
+        ]
+      }
+    }
+  },
+}
 </script>
 
 <style>
