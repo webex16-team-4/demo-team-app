@@ -75,23 +75,23 @@ export default {
         },
         //2問目
         {
-          text: "okG(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？",
-          image: "@/assets/tera.png",
+          text: "日本で一番最初に鉄道が開通したのはどの区間？",
+          image: "@/assets/train.png",
           choices: [
             {
-              text: "Z(ゼタ)",
-              isCorrect: 0,
-              feedback: "Z(ゼタ)は10の21乗です！",
-            },
-            {
-              text: "E(エクサ)",
-              isCorrect: 0,
-              feedback: "E(エクサ)は10の18乗です！",
-            },
-            {
-              text: "P(ペタ)",
+              text: "新橋-横浜間",
               isCorrect: 1,
-              feedback: "P(ペタ)は10の15乗です！",
+              feedback: "平均時速は32km/hで、50分かかったみたい！",
+            },
+            {
+              text: "新橋-東京",
+              isCorrect: 0,
+              feedback: "おしい！新橋とどこだろう？",
+            },
+            {
+              text: "横浜-鎌倉間",
+              isCorrect: 0,
+              feedback: "開通させるならもっと人口密度が高いところが良いかも！",
             },
           ],
         },
@@ -155,7 +155,7 @@ export default {
 .container {
   display: flex;
   height: 2em;
-  width: 300px;
+  width: 400px;
   padding: 1em;
   justify-content: space-around;
 }
