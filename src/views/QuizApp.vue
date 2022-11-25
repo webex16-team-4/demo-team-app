@@ -2,11 +2,7 @@
   <h1>Vue クイズ</h1>
   <div class="app">
     <h2>Q. {{ quizzes[qNum].text }}</h2>
-    <img
-      class="quiz-image"
-      src="https://via.placeholder.com/300x300"
-      alt="クイズタイトル"
-    />
+    <img class="quiz-image" v-bind:src="imgSrc" alt="クイズタイトル" />
     <div class="container">
       <button v-on:click="choose1">
         {{ quizzes[qNum].choices[0].text }}
@@ -18,6 +14,8 @@
         {{ quizzes[qNum].choices[2].text }}
       </button>
     </div>
+
+    <div>{{ "答え" }}</div>
     <div v-if="answer == 1">
       <div v-if="quizzes[qNum].choices[0].isCorrect == 1">正解！</div>
       <div v-if="quizzes[qNum].choices[0].isCorrect == 0">不正解！</div>
@@ -38,9 +36,6 @@
       <p></p>
       <button v-on:click="nextQ">次の問題へ</button>
     </div>
-    <div>{{ qNum }}</div>
-
-    <!-- <div>{{ "答え" }}</div> -->
   </div>
 </template>
 
@@ -54,27 +49,28 @@ export default {
       quizzes: [
         //1問目
         {
-          text: "1問目",
-          // image:
+          text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？",
+          image: "src/assets/tera.png",
           choices: [
             {
-              text: "1",
+              text: "Z(ゼタ)",
+              isCorrect: 0,
+              feedback: "Z(ゼタ)は10の21乗です！",
+            },
+            {
+              text: "E(エクサ)",
+              isCorrect: 0,
+              feedback: "E(エクサ)は10の18乗です！",
+            },
+            {
+              text: "P(ペタ)",
               isCorrect: 1,
-              feedback: "1feed",
-            },
-            {
-              text: "2",
-              isCorrect: 0,
-              feedback: "2feed",
-            },
-            {
-              text: "3",
-              isCorrect: 0,
-              feedback: "3feed",
+              feedback: "P(ペタ)は10の15乗です！",
             },
           ],
         },
       ],
+      imgSrc: "@/assets/tera.png",
     }
   },
   methods: {
@@ -82,23 +78,31 @@ export default {
       this.answer = 1
       if (this.quizzes[this.qNum].choices[0].isCorrect == 1) {
         this.nextQuiz = true
+      } else {
+        this.nextQuiz = false
       }
     },
     choose2: function () {
       this.answer = 2
       if (this.quizzes[this.qNum].choices[1].isCorrect == 1) {
+        this.nextQuiz = true
+      } else {
         this.nextQuiz = false
       }
     },
     choose3: function () {
       this.answer = 3
       if (this.quizzes[this.qNum].choices[2].isCorrect == 1) {
+        this.nextQuiz = true
+      } else {
         this.nextQuiz = false
       }
     },
 
     nextQ: function () {
-      this.qNum += 1
+      if (this.qNum !== this.quizzes.length - 1) {
+        this.qNum += 1
+      }
       this.answer = 0
       this.nextQuiz = false
     },
