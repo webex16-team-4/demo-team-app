@@ -2,11 +2,7 @@
   <h1>Vue クイズ</h1>
   <div class="app">
     <h2>Q. {{ quizzes[qNum].text }}</h2>
-    <img
-      class="quiz-image"
-      v-bind:src="quizzes[qNum].image"
-      alt="クイズタイトル"
-    />
+    <img class="quiz-image" v-bind:src="imgSrc" alt="クイズタイトル" />
     <div class="container">
       <button v-on:click="choose1">
         {{ quizzes[qNum].choices[0].text }}
@@ -45,6 +41,9 @@
 
 <script>
 export default {
+  // props: {
+  //   image: String,
+  // },
   data() {
     return {
       qNum: 0,
@@ -96,8 +95,18 @@ export default {
           ],
         },
       ],
+      imgS: require(this.quizzes[this.qNum].image),
     }
   },
+
+  computed: {
+    methods: {
+      imgSrc: function () {
+        return require(this.quizzes[this.qNum].image)
+      },
+    },
+  },
+
   methods: {
     choose1: function () {
       this.answer = 1
