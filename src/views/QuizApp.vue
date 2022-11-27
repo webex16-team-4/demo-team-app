@@ -2,7 +2,7 @@
   <h1>Vue クイズ</h1>
   <div class="app">
     <h2>Q. {{ quizzes[qNum].text }}</h2>
-    <img v-bind:src="imgS" class="quiz-image" :alt="クイズタイトル" />
+    <img v-bind:src="imgS" class="quiz-image" alt="クイズタイトル" />
     <div class="container">
       <button v-on:click="choose1">
         {{ quizzes[qNum].choices[0].text }}
@@ -15,7 +15,7 @@
       </button>
     </div>
 
-    <div>{{ "答え" }}</div>
+    <div>答え</div>
     <div v-if="answer == 0">
       <div v-if="quizzes[qNum].choices[answer].isCorrect == 1">正解！</div>
       <div v-if="quizzes[qNum].choices[answer].isCorrect == 0">不正解！</div>
