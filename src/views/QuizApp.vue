@@ -2,11 +2,7 @@
   <h1>Vue クイズ</h1>
   <div class="app">
     <h2>Q. {{ quizzes[qNum].text }}</h2>
-    <img
-      class="quiz-image"
-      v-bind:src="require('../assets/${quizzes[0].image}.png')"
-      alt="クイズタイトル"
-    />
+    <img v-bind:src="imgS" class="quiz-image" :alt="クイズタイトル" />
     <div class="container">
       <button v-on:click="choose1">
         {{ quizzes[qNum].choices[0].text }}
@@ -54,7 +50,7 @@ export default {
         //1問目
         {
           text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？",
-          image: "tera",
+          image: "tera.png",
           choices: [
             {
               text: "Z(ゼタ)",
@@ -76,7 +72,7 @@ export default {
         //2問目
         {
           text: "日本で一番最初に鉄道が開通したのはどの区間？",
-          image: "@/assets/train.png",
+          image: "train.png",
           choices: [
             {
               text: "新橋-横浜間",
@@ -96,17 +92,9 @@ export default {
           ],
         },
       ],
-      // imgS: require(quizzes[qNum].image),
+      imgS: require("@/assets/tera.png"),
     }
   },
-
-  // computed: {
-  //   methods: {
-  //     imgSrc: function () {
-  //       return require("../assets/tera.png")
-  //     },
-  //   },
-  // },
 
   methods: {
     choose1: function () {
@@ -142,6 +130,7 @@ export default {
       }
       this.answer = 0
       this.nextQuiz = false
+      this.imgS = require("@/assets/" + this.quizzes[this.qNum].image)
     },
   },
 }
