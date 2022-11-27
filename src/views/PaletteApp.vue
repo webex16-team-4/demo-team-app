@@ -48,35 +48,6 @@
       <button v-on:click="keep">気に入った！</button>
       <button v-on:click="resetMixColor">もう一回！！</button>
     </div>
-    <!-- 
-    <button v-on:click="firstColor">1色目</button>
-    <div
-      v-if="DfirstColor"
-      class="mini-palette"
-      v-bind:style="firstColorStyle"
-    ></div>
-    <p v-if="DfirstColor">rgba( {{ red1 }}, {{ green1 }})</p>
-    <p>+</p>
-    <button v-on:click="secondColor">2色目</button>
-    <div
-      v-if="DsecondColor"
-      class="mini-palette"
-      v-bind:style="secondColorStyle"
-    ></div>
-    <p v-if="DsecondColor">rgba( {{ red2 }}, {{ green2 }})</p>
-    <button v-on:click="fusion" v-if="Dfusion">結合！</button>
-    <p v-if="Dresult">↓</p>
-    <div
-      v-if="Dresult"
-      class="mini-palette"
-      v-bind:style="mixedColorStyle"
-    ></div>
-    <p>rgba( {{ averagedRed }}, {{ averagedGreen }})</p>
-    <div v-if="Dresult">
-      <button v-on:click="keep">気に入った！</button>
-      <button v-on:click="resetMixColor">もう一回！！</button>
-    </div> -->
-
     <div class="colors-container">
       <div
         class="mini-palette"
@@ -125,12 +96,11 @@ export default {
     showColor(color) {
       this.red = color.red
       this.green = color.green
-      // console.log(color)
     },
     deleteColor(color) {
       this.colors.splice(color.num, 1)
       this.num -= 1
-      for (let i = color.num; i < this.num + 1; ++i) {
+      for (let i = color.num; i < this.num; ++i) {
         this.colors[i].num -= 1
       }
     },
