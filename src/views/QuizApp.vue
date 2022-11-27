@@ -16,20 +16,20 @@
     </div>
 
     <div>{{ "答え" }}</div>
+    <div v-if="answer == 0">
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 1">正解！</div>
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 0">不正解！</div>
+      <div>{{ quizzes[qNum].choices[answer].feedback }}</div>
+    </div>
     <div v-if="answer == 1">
-      <div v-if="quizzes[qNum].choices[0].isCorrect == 1">正解！</div>
-      <div v-if="quizzes[qNum].choices[0].isCorrect == 0">不正解！</div>
-      <div>{{ quizzes[qNum].choices[0].feedback }}</div>
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 1">正解！</div>
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 0">不正解！</div>
+      <div>{{ quizzes[qNum].choices[answer].feedback }}</div>
     </div>
     <div v-if="answer == 2">
-      <div v-if="quizzes[qNum].choices[1].isCorrect == 1">正解！</div>
-      <div v-if="quizzes[qNum].choices[1].isCorrect == 0">不正解！</div>
-      <div>{{ quizzes[qNum].choices[1].feedback }}</div>
-    </div>
-    <div v-if="answer == 3">
-      <div v-if="quizzes[qNum].choices[2].isCorrect == 1">正解！</div>
-      <div v-if="quizzes[qNum].choices[2].isCorrect == 0">不正解！</div>
-      <div>{{ quizzes[qNum].choices[2].feedback }}</div>
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 1">正解！</div>
+      <div v-if="quizzes[qNum].choices[answer].isCorrect == 0">不正解！</div>
+      <div>{{ quizzes[qNum].choices[answer].feedback }}</div>
     </div>
 
     <div v-if="nextQuiz">
@@ -43,19 +43,21 @@
 export default {
   data() {
     return {
-      qNum: 0,
-      answer: 0,
-      nextQuiz: false,
+      qNum: 0, //問題番号。0番が最初の問題
+      answer: -1, //答えの部分に表示する正誤と解説を指定するのに使う
+      nextQuiz: false, //正解の選択肢が選ばれたかどうかを判定するのに使う
+      //以下、クイズの内容
       quizzes: [
         //1問目
         {
-          text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？",
-          image: "tera.png",
+          text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？", //問題文
+          image: "tera.png", //問題の画像
+          //選択肢3つ
           choices: [
             {
-              text: "Z(ゼタ)",
-              isCorrect: 0,
-              feedback: "Z(ゼタ)は10の21乗です！",
+              text: "Z(ゼタ)", //選択ボタンに表示する内容
+              isCorrect: 0, //正解かどうか。正解は1、不正解は0
+              feedback: "Z(ゼタ)は10の21乗です！", //選択肢が選ばれた後に表示する解説
             },
             {
               text: "E(エクサ)",
@@ -97,24 +99,27 @@ export default {
   },
 
   methods: {
+    //左の選択肢が選ばれたときの処理
     choose1: function () {
-      this.answer = 1
+      this.answer = 0
       if (this.quizzes[this.qNum].choices[0].isCorrect == 1) {
         this.nextQuiz = true
       } else {
         this.nextQuiz = false
       }
     },
+    //真ん中の選択肢が選ばれたときの処理
     choose2: function () {
-      this.answer = 2
+      this.answer = 1
       if (this.quizzes[this.qNum].choices[1].isCorrect == 1) {
         this.nextQuiz = true
       } else {
         this.nextQuiz = false
       }
     },
+    //右の選択肢が選ばれたときの処理
     choose3: function () {
-      this.answer = 3
+      this.answer = 2
       if (this.quizzes[this.qNum].choices[2].isCorrect == 1) {
         this.nextQuiz = true
       } else {
@@ -128,7 +133,7 @@ export default {
       } else {
         this.qNum = 0
       }
-      this.answer = 0
+      this.answer = -1
       this.nextQuiz = false
       this.imgS = require("@/assets/" + this.quizzes[this.qNum].image)
     },
