@@ -51,7 +51,7 @@ export default {
         //1問目
         {
           text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？", //問題文
-          image: "tera.png", //問題の画像
+          image: "tera.png", //問題の画像(ファイル名のみ)
           //選択肢3つ
           choices: [
             {
@@ -94,7 +94,7 @@ export default {
           ],
         },
       ],
-      imgS: require("@/assets/tera.png"),
+      imgS: require("@/assets/tera.png"), //表示する画像のパスを持っておく変数
     }
   },
 
@@ -127,6 +127,7 @@ export default {
       }
     },
 
+    //次の問題に行くボタンが押されたときの処理
     nextQ: function () {
       if (this.qNum !== this.quizzes.length - 1) {
         this.qNum += 1
