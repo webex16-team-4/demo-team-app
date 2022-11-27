@@ -2,7 +2,11 @@
   <h1>Vue クイズ</h1>
   <div class="app">
     <h2>Q. {{ quizzes[qNum].text }}</h2>
-    <img class="quiz-image" v-bind:src="imgSrc" alt="クイズタイトル" />
+    <img
+      class="quiz-image"
+      v-bind:src="require('../assets/${quizzes[0].image}.png')"
+      alt="クイズタイトル"
+    />
     <div class="container">
       <button v-on:click="choose1">
         {{ quizzes[qNum].choices[0].text }}
@@ -41,9 +45,6 @@
 
 <script>
 export default {
-  // props: {
-  //   image: String,
-  // },
   data() {
     return {
       qNum: 0,
@@ -53,7 +54,7 @@ export default {
         //1問目
         {
           text: "G(ギガ)の1000倍はT(テラ)。ではT(テラ)の1000倍は？",
-          image: "@/assets/tera.png",
+          image: "tera",
           choices: [
             {
               text: "Z(ゼタ)",
@@ -95,17 +96,17 @@ export default {
           ],
         },
       ],
-      imgS: require(this.quizzes[this.qNum].image),
+      // imgS: require(quizzes[qNum].image),
     }
   },
 
-  computed: {
-    methods: {
-      imgSrc: function () {
-        return require(this.quizzes[this.qNum].image)
-      },
-    },
-  },
+  // computed: {
+  //   methods: {
+  //     imgSrc: function () {
+  //       return require("../assets/tera.png")
+  //     },
+  //   },
+  // },
 
   methods: {
     choose1: function () {
